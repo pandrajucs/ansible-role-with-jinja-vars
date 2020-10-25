@@ -1,0 +1,5 @@
+---
+  - name: install nginx server on app servers using j2 templates
+    hosts: app
+    roles:
+     - ansible-role-with-jinja-vars
