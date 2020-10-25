@@ -1,0 +1,49 @@
+---
+# tasks file for /etc/ansible/roles/ansible-role-with-jinja-vars
+       - name: Run apt update
+         shell: apt update
+         tags: 
+            - update
+
+       - name: Install nginx server
+         apt: >
+            name=nginx
+            state=present
+         tags: 
+           - nginx
+        
+       - name: Copy index.j2 file to destination
+         template: >
+             src=index.j2
+             dest=/var/www/html/index.nginx-debian.html
+             owner=root
+             group=root
+             mode=0644
+         notify: 
+            - restart nginx
+         tags:
+            - j2
+
+       - name: copy css files to destination
+         copy: >
+            src=style.css
+            dest=/var/www/html/style.css
+            owner=root
+            group=root
+            mode=0644
+         notify: 
+            - restart nginx
+         tags:
+            - css
+
+       - name: copy js files to destination
+         copy: >
+            src=scorekeeper.js
+            dest=/var/www/html/scorekeeper.js
+            owner=root
+            group=root
+            mode=0644
+         notify: 
+            - restart nginx
+         tags:
+            - js

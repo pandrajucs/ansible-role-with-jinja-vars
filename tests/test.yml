@@ -1,0 +1,5 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - /etc/ansible/roles/ansible-role-with-jinja-vars

@@ -1,0 +1,4 @@
+---
+# handlers file for /etc/ansible/roles/ansible-role-with-jinja-vars
+       - name : restart nginx
+         command: service nginx restart
